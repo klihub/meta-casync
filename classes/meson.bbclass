@@ -88,7 +88,19 @@ EOF
 CONFIGURE_FILES = "meson.build"
 
 meson_do_configure() {
-    if ! meson ${MESONOPTS} "${MESON_SOURCEPATH}" "${B}" ${MESON_CROSS_FILE} ${EXTRA_OEMESON} -Drpath=${libdir}; then
+    PN="${@ d.getVar('PN', True)}"
+    case $PN in
+        *-native)
+            echo "Activating meson rpath hack for $PN..."
+            RPATH_OPTS="-Drpath=${libdir}"
+            ;;
+        *)
+            echo "meson rpath hack not needed for $PN..."
+            RPATH_OPTS=""
+            ;;
+    esac
+
+    if ! meson ${MESONOPTS} "${MESON_SOURCEPATH}" "${B}" ${MESON_CROSS_FILE} ${EXTRA_OEMESON} $RPATH_OPTS; then
         cat ${B}/meson-logs/meson-log.txt
         bbfatal_log meson failed
     fi
