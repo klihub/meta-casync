@@ -1,0 +1,53 @@
+diff --git a/meson.build b/meson.build
+index 889c217..75b5abb 100644
+--- a/meson.build
++++ b/meson.build
+@@ -127,6 +127,8 @@ else
+ endif
+ conf.set10('HAVE_SELINUX', get_option('selinux'))
+ 
++rpath = get_option('rpath')
++
+ threads = dependency('threads')
+ math = cc.find_library('m')
+ 
+@@ -160,7 +162,8 @@ executable(
+                 libzstd,
+                 math,
+                 openssl],
+-        install : true)
++        install : true,
++        install_rpath : rpath)
+ 
+ executable(
+         'casync-http',
+@@ -174,7 +177,8 @@ executable(
+                 math,
+                 openssl],
+         install : true,
+-        install_dir : protocoldir)
++        install_dir : protocoldir,
++        install_rpath : rpath)
+ 
+ meson.add_install_script('sh', '-c',
+                          'ln -svf casync-http $DESTDIR@0@'.format(
+@@ -197,7 +201,8 @@ meson.add_postconf_script('sh', '-c',
+ executable('notify-wait',
+            notify_wait_sources,
+            include_directories : includes,
+-           install : false)
++           install : false,
++           install_rpath : rpath)
+ 
+ ############################################################
+ 
+diff --git a/meson_options.txt b/meson_options.txt
+index d578a0a..20e8ff7 100644
+--- a/meson_options.txt
++++ b/meson_options.txt
+@@ -6,3 +6,5 @@ option('selinux', type : 'boolean', value : true,
+        description : 'build the SELinux backend (requires libselinux-devel)')
+ option('man', type : 'boolean', value : true,
+        description : 'build and install man pages (requires spinx-build')
++option('rpath', type : 'string', value : '',
++       description : 'rpath to use after install')
