@@ -88,7 +88,7 @@ EOF
 CONFIGURE_FILES = "meson.build"
 
 meson_do_configure() {
-    if ! meson ${MESONOPTS} "${MESON_SOURCEPATH}" "${B}" ${MESON_CROSS_FILE} ${EXTRA_OEMESON} -Drpath=${libdir}; then
+    if ! meson ${MESONOPTS} "${MESON_SOURCEPATH}" "${B}" ${MESON_CROSS_FILE} ${EXTRA_OEMESON} -Dinstall_rpath=${libdir}; then
         cat ${B}/meson-logs/meson-log.txt
         bbfatal_log meson failed
     fi
