@@ -61,7 +61,7 @@ casync_populate_store () {
 do_casync_rootfs () {
     version=$(expr $(casync_read_latest) + 1)
 
-    casync_prepare_rootfs
+    casync_prepare_rootfs ${version}
     casync_populate_store
     casync_write_latest $version
 }
