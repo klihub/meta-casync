@@ -6,6 +6,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
 SRC_URI = " \
     git://github.com/mesonbuild/meson.git \
+    file://specify-install-rpath-via-environment.patch \
 "
 
 SRCREV = "5626df46453e73b63827c4542aae36443fbd928b"
