@@ -90,7 +90,7 @@ EOF
 
 CONFIGURE_FILES = "meson.build"
 
-meson_do_configure() {
+casync_meson_do_configure() {
     export MESON_INSTALL_RPATH="${MESON_INSTALL_RPATH}"
     if ! meson ${MESONOPTS} "${MESON_SOURCEPATH}" "${B}" ${MESON_CROSS_FILE} ${EXTRA_OEMESON}; then
         cat ${B}/meson-logs/meson-log.txt
@@ -99,11 +99,11 @@ meson_do_configure() {
 }
 
 do_compile[progress] = "outof:^\[(\d+)/(\d+)\]\s+"
-meson_do_compile() {
+casync_meson_do_compile() {
     ninja ${PARALLEL_MAKE}
 }
 
-meson_do_install() {
+casync_meson_do_install() {
     DESTDIR='${D}' ninja ${PARALLEL_MAKEINST} install
 }
 

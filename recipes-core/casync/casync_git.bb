@@ -11,7 +11,7 @@ SRCREV = "dbac916ebff22081d891ad25da30a2216b9f3307"
 
 S = "${WORKDIR}/git"
 
-inherit meson pkgconfig
+inherit casync_meson pkgconfig
 
 EXTRA_OEMESON += " \
     -Dselinux=false \
