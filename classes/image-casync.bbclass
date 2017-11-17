@@ -59,6 +59,11 @@ casync_populate_store () {
 
 # task to generate a casync update for this rootfs
 do_casync_rootfs () {
+    if [ -z ${@bb.utils.contains('IMAGE_FEATURES', 'casync-update', 'yes', '', d)} ]; then
+        bbnote "casync-update is not enabled in IMAGE_FEATURES, skipping."
+        return 0
+    fi
+
     version=$(expr $(casync_read_latest) + 1)
 
     casync_prepare_rootfs
