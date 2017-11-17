@@ -25,4 +25,4 @@ CASYNC_CHUNK_STORE = "${CASYNC_DEPLOY_DIR}/default.castr"
 CASYNC_RUNTIME_DIR ?= "/var/lib/casync"
 
 # casync update server URL, if any, to pre-configure image with
-CASYNC_UPDATE_URL ?= ""
+CASYNC_UPDATE_URL ??= ""
