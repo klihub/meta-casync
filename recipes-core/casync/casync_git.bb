@@ -5,9 +5,9 @@ LIC_FILES_CHKSUM = "file://LICENSE.LGPL2.1;md5=4fbd65380cdd255951079008b364516c"
 
 DEPENDS = "curl openssl zlib zstd acl"
 
-PV = "2017.10"
+PV = "2017.11"
 SRC_URI = "git://github.com/systemd/casync.git;protocol=https"
-SRCREV = "6daefa8a008c3230495a76017eca546f6622bb1d"
+SRCREV = "dbac916ebff22081d891ad25da30a2216b9f3307"
 
 S = "${WORKDIR}/git"
 
